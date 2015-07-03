@@ -1,0 +1,482 @@
+
+"DOTAAbilities"
+{
+	"Version"		"1"
+	
+	"saber_wind"
+	{
+		"ID"							"1901"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"saber\saber_wind"
+		"AbilityManaCost"       		"80 120 160 200"
+		"AbilityCastAnimation"			"ACT_SPECIAL_ATTACK2"
+		"AbilityCastPoint"				"0.6"
+		"AbilityCooldown"				"10"
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"  					"4"
+
+		"OnAbilityPhaseStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_saber_wind"
+				"Target" 		"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"		"saber_begin"
+				"Target"			"CASTER"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"LinearProjectile"
+			{
+            	"EffectName"        "particles\units\heroes\hero_invoker\invoker_tornado.vpcf"
+            	"MoveSpeed"			"1600"
+            	"StartRadius"		"0"
+            	"EndRadius"			"150"
+            	"FixedDistance"		"1300"
+            	"StartPosition"		"CASTER"
+            	"HasFrontalCone"	"0"
+            	"ProvidesVision"	"1"
+            	"VisionRadius"		"500"
+            	"TargetTeams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+            	"TargetTypes"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        	}
+		}
+		"OnProjectileHitUnit"
+		{
+			"Damage"
+			{
+				"Damage"				"%damage"
+				"Target"
+				{
+					"Center"  	"TARGET"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+				"Type" 					"DAMAGE_TYPE_MAGICAL"
+			}
+			"Knockback"
+			{
+				"Center" 	"TARGET"
+				"Target"
+				{
+					"Center"  	"TARGET"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+				"Duration"	"%duration"
+				"Distance"	"%distance"
+				"Height"	"%height"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_saber_wind"
+			{
+				"Duration"          "8"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%atkspd"
+				}
+				"OnCreated"
+				{
+					"AttachEffect"
+						{
+							"EffectName"			"particles/saber/saber_wind.vpcf"
+							"EffectAttachType"		"start_at_customorigin"
+							"Target"			"CASTER"
+							"ControlPointEntities"
+							{
+								"CASTER"	"attach_weapon"
+								"CASTER"	"attach_hitloc"
+								"CASTER"	"attach_hitloc"
+							}
+						}
+				}	
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"200"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"100"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"height"				"200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"atkspd"				"50 100 150 200"
+			}
+		}
+	}
+
+	"saber_calibur"
+	{
+		"ID"							"1902"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"saber\saber_calibur"
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"  "4"
+
+		"Modifiers"
+        {
+            "modifier_crit_passive"
+            {
+            	"IsHidden"		"1"
+                "Passive"       "1"
+                "OnAttackStart"
+                {
+                	"Random"
+                	{
+                		"Chance"			"%chance"
+                		"OnSuccess"
+                		{
+                			"ApplyModifier"
+							{
+								"Target"		"CASTER"
+								"ModifierName"	"modifier_eff"
+							}
+
+                		}
+                		"OnFailure"
+                		{
+                			"RemoveModifier"
+                			{
+                				"ModifierName"	"modifier_eff"
+                				"Target" 		"CASTER"
+                			}
+                		}
+                	}
+                }       
+            }
+            "modifier_eff"
+            {
+            	"Duration"              "1"
+            	"IsHidden"				"1"
+            	 "Properties"
+            		{
+               			"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"			"%crit"
+           			}
+				"OnCreated"
+				{
+					"AttachEffect"
+						{
+							"EffectName"			"particles/saber/saber_exc.vpcf"
+							"EffectAttachType"		"start_at_customorigin"
+							"Target"			"CASTER"
+							"ControlPointEntities"
+							{
+								"CASTER"	"attach_weapon"
+								"CASTER"	"attach_hitloc"
+								"CASTER"	"attach_hitloc"
+							}
+						}
+				}	
+            }
+        }
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"chance"				"20 25 30 35"
+			}
+			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit"				"200 300 400 500"
+			}
+			
+		}
+	}
+
+	"saber_armor"
+	{
+		"ID"							"1903"
+		"AbilityTextureName"			"saber\saber_armor"
+		"BaseClass"						"ability_datadriven"
+		"MaxLevel"  "4"
+	}
+
+	"saber_exc"       //技能的名字
+	{
+		"ID"							"1904"
+        //建议ID从1850开始，依次排列
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        //DOTA_ABILITY_BEHAVIOR_AOE ,AOE技能
+        //DOTA_ABILITY_BEHAVIOR_ATTACK，攻击附加属性技能，例如克林克兹的火箭
+        //DOTA_ABILITY_BEHAVIOR_AURA，光环技能
+        //DOTA_ABILITY_BEHAVIOR_AUTOCAST ，自动释放技能，指定这个技能可以切换为自动释放状态，例如哈斯卡的火矛
+        //DOTA_ABILITY_BEHAVIOR_CHANNELLED ，持续施法技能，例如光法的冲击波，TK的再装填
+        //DOTA_ABILITY_BEHAVIOR_DIRECTIONAL ，方向性技能，例如米拉娜的月之神箭
+        //DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET ，不惊醒目标，例如SB的暗影冲刺
+        //DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT ，不影响移动，目前拥有这个属性的只有信使的速度爆发
+        //DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK ，不继续之前攻击
+        //DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT ，不继续之前移动,例如斧王的吼
+        //DOTA_ABILITY_BEHAVIOR_HIDDEN ，隐藏，拥有此属性的技能不会在技能面板上显示，例如沉默的智力偷取
+        //DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING ，无视后摇，例如米拉娜的跳
+        //DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL ，无视前摇，例如编织者的缩地，屠夫的腐烂等
+        //DOTA_ABILITY_BEHAVIOR_IGNORE_TURN ， 无视面向，DOTA2目前没有拥有这个属性的技能，
+        //DOTA_ABILITY_BEHAVIOR_IMMEDIATE ，立即生效，DOTA2很多需要快速反应的技能都拥有这个属性，比如TA的折光
+        //DOTA_ABILITY_BEHAVIOR_NO_TARGET ，无目标技能，点击立即释放
+        //DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE ， 不能学习的技能，一般是其他技能的附属技能
+        //DOTA_ABILITY_BEHAVIOR_PASSIVE ， 被动技能
+        //DOTA_ABILITY_BEHAVIOR_POINT ，点目标技能
+        //DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES ，被定身（拥有modifier_rooted）后无法使用这个技能，例如女王敌法的Blink
+        //DOTA_ABILITY_BEHAVIOR_TOGGLE ，使用一次后激活，再使用一次后取消的技能，例如巫医的恢复术，IO的过载
+        //DOTA_ABILITY_BEHAVIOR_UNIT_TARGET ，单位目标技能
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"saber\saber_exc"
+    	"MaxLevel"  "3"
+        "AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"50 40 30"
+		"AbilityChannelTime"			"2.0 1.8 1.5"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+        //DAMAGE_TYPE_MAGICAL 魔法伤害
+        //DAMAGE_TYPE_PHYSICAL 物理伤害
+        //DAMAGE_TYPE_PURE 纯粹/真实伤害
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+    	"AbilityManaCost"       "300 400 500"
+		
+		"precache"
+		{
+			"particle"				"particles/saber/saber_exc.vpcf"
+			"particle"              "particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+			"soundfile"				"scripts/game_sounds_heroes/game_sounds_omniknight.txt"
+		}
+
+		"OnSpellStart"  
+		{
+			"ApplyModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_channel_start"
+			}
+			"FireSound"
+			{
+				"EffectName"		"saber_exc"
+				"Target"			"CASTER"
+			}
+		}
+
+    "OnChannelSucceeded"
+    {
+			"RemoveModifier"
+			{
+				"Target"				"CASTER"
+				"ModifierName"			"modifier_channel_start"
+			}
+			"ApplyModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_saber_exc"
+			}
+			"ApplyModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_excspell"
+			}
+			"AttachEffect"
+			{
+				"EffectName"                "particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+				"Scale"						"2"
+				"EffectAttachType"  "follow_origin"
+				"Target"			"CASTER"
+				"ControlPoint"
+				{
+					"00"	"0 0 5"
+					"01"	"300 300 300"
+					"02"	"0 0 5"
+				}
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Omniknight.Purification"
+				"Target"			"CASTER"
+			}
+			"Damage"
+			{
+				"Damage"				"%damage"
+				"Center"			"CASTER"
+				"Target"
+				{
+					"Center"			"CASTER"
+					"Radius"			"%radius"
+					"Teams"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+				"Type" "DAMAGE_TYPE_MAGICAL"
+			}
+			"Knockback"
+			{
+				"Center" 	"CASTER"
+				"Target"
+				{
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				}
+				"Duration"	"%duration"
+				"Distance"	"%distance"
+				"Height"	"%height"
+			}
+		
+    } 
+		
+		"OnChannelFinish"
+		{
+			"RemoveModifier"
+			{
+				"Target"				"CASTER"
+				"ModifierName"			"modifier_channel_start"
+			}
+		}
+		
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_channel_start"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_channel_start"
+			{
+				"IsHidden" "1"
+			}
+			"modifier_excspell"
+			{
+				"IsHidden" "1"
+				"OverrideAnimation" "ACT_SPECIAL_ATTACK1"
+				"Duration"                "1.5"
+			}
+
+			"modifier_saber_exc"
+			{
+				"Duration"                "30"
+				"OnCreated"
+				{
+					"AttachEffect"
+						{
+							"EffectName"			"particles/saber/saber_exc.vpcf"
+							"EffectAttachType"		"start_at_customorigin"
+							"Target"			"CASTER"
+							"ControlPointEntities"
+							{
+								"CASTER"	"attach_weapon"
+								"CASTER"	"attach_hitloc"
+								"CASTER"	"attach_hitloc"
+							}
+						}
+				}	
+				"OnAttack"
+				{
+					"Damage"
+						{
+							"Damage"			"%buffdamage"
+							"Target"			"TARGET"
+							"Type" "DAMAGE_TYPE_MAGICAL"
+						}
+				}
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"0.5"
+			}
+			
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"400 600 800"
+			}
+			
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"400 450 500"
+			}
+			
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance"				"300 400 500"
+			}
+			
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"height"				"200 200 200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buffdamage"				"100 200 300"
+			}
+		}
+	}
+
+
+  "ability_dummy_unit"
+  {
+    "AbilityBehavior" 		"//DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" 					"ability_datadriven"
+		"AbilityTextureName"            "rubick_empty1"
+    "MaxLevel"                      "1"
+    
+    "Modifiers"
+		{
+			"dummy_unit"
+      {
+        "Passive"                        "1"
+        "IsHidden"                        "1"    
+        "States"
+        {
+          "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NO_HEALTH_BAR" "MODIFIER_STATE_VALUE_ENABLED"
+          "MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+        }
+      }
+		}
+  }
+}

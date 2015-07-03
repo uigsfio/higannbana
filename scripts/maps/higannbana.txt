@@ -1,0 +1,154 @@
+"higannbana"
+{
+	"wave_data"
+	{
+		"1"//第一波怪物
+		{
+			"name"					"npc_cf_enemy_01_necro_warrior"
+			"spawn_interval"		"0.1" //每个怪之间的刷怪时间间隔，可以不定义
+			"count"					"60"//刷怪数量可以不定义，为默认刷怪数量
+			"level"					"1" //怪物等级，可以不定义，默认为1级
+			"RoundTitle"			"第一波"
+			"RoundQuestTitle"		"#HGRound_Quest_Title_1"
+			"spawner"
+			{
+				"1"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_left"
+					"FirstPathCorner"			"custom_base"
+				}
+				"2"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_BOSS"
+					"FirstPathCorner"			"custom_base"
+				}
+				"3"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_right"
+					"FirstPathCorner"			"custom_base"
+				}
+				
+			}
+		}
+		"2"
+		{
+			"name"					"npc_cf_enemy_02_creep_bad_melee"
+			"spawn_interval"		"0.5" //每个怪之间的刷怪时间间隔，可以不定义
+			"count"				"30"//刷怪数量可以不定义，为默认刷怪数量
+			"level"				"1" //怪物等级，可以不定义，默认为1级
+			"RoundTitle"			"第一波"
+			"RoundQuestTitle"		"#HGRound_Quest_Title_1"
+			"spawner"
+			{
+				"1"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_left"
+					"FirstPathCorner"			"custom_base"
+				}
+				"2"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_BOSS"
+					"FirstPathCorner"			"custom_base"
+				}
+				"3"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_right"
+					"FirstPathCorner"			"custom_base"
+				}
+				
+			}
+		}
+		"3"
+		{
+			"name"					"npc_cf_enemy_01_necro_warrior"
+			"spawn_interval"		"0.1" //每个怪之间的刷怪时间间隔，可以不定义
+			"count"					"60"//刷怪数量可以不定义，为默认刷怪数量
+			"level"					"4" //怪物等级，可以不定义，默认为1级
+			"RoundTitle"			"第二波"
+			"RoundQuestTitle"		"#HGRound_Quest_Title_2"
+			"spawner"
+			{
+				"1"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_left"
+					"FirstPathCorner"			"custom_base"
+				}
+				"2"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_BOSS"
+					"FirstPathCorner"			"custom_base"
+				}
+				"3"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_right"
+					"FirstPathCorner"			"custom_base"
+				}
+				
+			}
+		}
+		"4"
+		{
+			"name"					"npc_cf_enemy_02_creep_bad_melee"
+			"spawn_interval"		"0.5" //每个怪之间的刷怪时间间隔，可以不定义
+			"count"				"30"//刷怪数量可以不定义，为默认刷怪数量
+			"level"				"3" //怪物等级，可以不定义，默认为1级
+			"RoundTitle"			"第二波"
+			"RoundQuestTitle"		"#HGRound_Quest_Title_2"
+			"spawner"
+			{
+				"1"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_left"
+					"FirstPathCorner"			"custom_base"
+				}
+				"2"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_BOSS"
+					"FirstPathCorner"			"custom_base"
+				}
+				"3"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_right"
+					"FirstPathCorner"			"custom_base"
+				}
+				
+			}
+		}
+		"5"
+		{
+			"name"					"npc_hg_boss_invoker"
+			"spawn_interval"		"1" //每个怪之间的刷怪时间间隔，可以不定义
+			"count"				"1"//刷怪数量可以不定义，为默认刷怪数量
+			//"level"				"3" //怪物等级，可以不定义，默认为1级
+			"RoundTitle"			"第二波"
+			"RoundQuestTitle"		"#HGRound_Quest_Title_2"
+			"spawner"
+			{
+				"1"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_BOSS"
+					"FirstPathCorner"			"custom_base"
+				}
+				
+			}
+		}
+		"6"
+		{
+			"name"					"npc_hg_boss_invoker"
+			"spawn_interval"		"1" //每个怪之间的刷怪时间间隔，可以不定义
+			"count"				"1"//刷怪数量可以不定义，为默认刷怪数量
+			//"level"				"3" //怪物等级，可以不定义，默认为1级
+			"RoundTitle"			"第二波"
+			"RoundQuestTitle"		"#HGRound_Quest_Title_2"
+			"spawner"
+			{
+				"1"//随机的刷怪点，可以定义多个,至少要有一个
+				{
+					"SpawnerEntityName"			"HG_shuaguai_BOSS"
+					"FirstPathCorner"			"custom_base"
+				}
+				
+			}
+		}
+	}
+}

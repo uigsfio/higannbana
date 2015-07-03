@@ -1,0 +1,39 @@
+"nyx_assassin_nyx_spawn_01"
+{
+ 	"channel" 	"CHAN_VOICE"
+	"volume" 	"1.00"
+ 	"soundlevel" 	"SNDLVL_TALKING"
+	"wave" 		"sounds\saber\saber_spawn.mp3"
+}
+
+"nyx_assassin_nyx_begin_01"
+{
+ 	"channel" 	"CHAN_VOICE"
+	"volume" 	"1.00"
+ 	"soundlevel" 	"SNDLVL_TALKING"
+	"wave" 		"sounds\saber\saber_begin.mp3"
+}
+
+"nyx_assassin_nyx_move_01"
+{
+ 	"channel" 	"CHAN_VOICE"
+	"volume" 	"1.00"
+ 	"soundlevel" 	"SNDLVL_TALKING"
+	"wave" 		"sounds\saber\saber_move.mp3"
+}
+
+"nyx_assassin_nyx_attack_01"
+{
+ 	"channel" 	"CHAN_VOICE"
+	"volume" 	"1.00"
+ 	"soundlevel" 	"SNDLVL_TALKING"
+	"wave" 		"sounds\saber\saber_attack.mp3"
+}
+
+"nyx_assassin_nyx_levelup_01"
+{
+ 	"channel" 	"CHAN_VOICE"
+	"volume" 	"1.00"
+ 	"soundlevel" 	"SNDLVL_TALKING"
+	"wave" 		"sounds\saber\saber_lvlup.mp3"
+}

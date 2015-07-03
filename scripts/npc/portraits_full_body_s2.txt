@@ -1,0 +1,15 @@
+"DOTAFullBodyPortraitInfo"
+{
+	"npc_dota_hero_nyx_assassin"
+	{
+		"cameras"
+		{
+			"econ_set_preview"
+			{
+				"PortraitPosition"		"819.700012 -294.589996 0.000000"
+				"PortraitAngles"		"-2.000000 160.25 0.000000"
+				"PortraitFOV"		"13.00000"
+				"PortraitFar"		"1000.000000"
+			}
+		}
+	}
